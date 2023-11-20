@@ -9,21 +9,25 @@ export class TemplateService {
     constructor(@InjectModel('Template') private readonly templateModel: Model<Template>) {}
 
     async getAllTemplates(): Promise<Template[]>{
-        return this.templateModel.find().exec();
+       let templates = await this.templateModel.find().exec();
+       return templates;
     }
 
-    async createTemplate(template: Template): Promise<Template>{
-        const newTemplate = new this.templateModel(template);
-        console.log(newTemplate)
-        return newTemplate.save();
-
-    }
+    async createTemplate(template: Template): Promise<Template> {
+    const newTemplate = new this.templateModel(template);
+    return newTemplate.save();
+  }
 
     async updateTemplate(id: string, template: Template): Promise<Template>{
         return this.templateModel.findByIdAndUpdate(id, template, {new:true})
     }
 
     async deleteTemplate(id: string): Promise<void>{
+      console.log(id)
         await this.templateModel.findByIdAndDelete(id);
     }
+
+    async findOne(id: string): Promise<any> {
+        return  await this.templateModel.findById(id).exec();
+      }
 }

@@ -1,7 +1,7 @@
-DELETE http://localhost:3000/template/6557a92eb734873cb541d143 HTTP/1.1
+DELETE http://localhost:3000/template/655a455d7732f002aedbb293 HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Updated",
+    "name": "asadasfada",
     "content": "Test Content"
 }
