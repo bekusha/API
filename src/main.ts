@@ -15,7 +15,7 @@ async function bootstrap() {
 
   // Cors configuration
   const corsOptions: CorsOptions = {
-    origin: 'https://ubiquitous-frangipane-38de59.netlify.app',
+    origin: 'https://ubiquitous-frangipane-38de59.netlify.app', 
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
     credentials: true,
   };
