@@ -23,8 +23,7 @@ export class TemplateService {
     }
 
     async deleteTemplate(id: string): Promise<void>{
-      console.log(id)
-        await this.templateModel.findByIdAndDelete(id);
+      await this.templateModel.findByIdAndDelete(id);
     }
 
     async findOne(id: string): Promise<any> {

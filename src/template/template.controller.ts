@@ -1,6 +1,9 @@
 import { Body, Controller, Get, Param, Post, Put, Delete, Render, HttpStatus, HttpException } from '@nestjs/common';
 import { TemplateService } from './template.service';
 import { Template } from 'src/model/template.model';
+import DOMPurify from 'dompurify';
+
+
 
 
 @Controller('template')
@@ -19,19 +22,26 @@ export class TemplateController {
   }
 
   
- @Get(':id/html')
- @Render('template')
+
  
-  async findOne(@Param('id') id: string) {
-    const template = await this.templateService.findOne(id);
-    return template;
-  }
+ @Get(':id/html')
+ 
+ @Render('template')
+ async findOne(@Param('id') id: string) {
+ 
+  try {
+    let template = await this.templateService.findOne(id);
+    console.log(template)
+    return  template ;
+   } catch (error) {
+    throw new HttpException('Error fetching template', HttpStatus.INTERNAL_SERVER_ERROR);
+   }
+ }
 
   @Post('')
 async createTemplate(@Body() template: Template): Promise<Template> {
   try {
     const createdTemplate = await this.templateService.createTemplate(template);
-    console.log(createdTemplate)
     return createdTemplate;
   } catch (error) {
     throw new HttpException('Error creating template', HttpStatus.BAD_REQUEST);
