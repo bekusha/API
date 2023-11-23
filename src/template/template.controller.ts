@@ -20,10 +20,7 @@ export class TemplateController {
     }
   }
 
-  
-
- 
- @Get(':id/html')
+@Get(':id/html')
  
  @Render('template')
  async findOne(@Param('id') id: string) {

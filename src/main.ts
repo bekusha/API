@@ -15,7 +15,7 @@ async function bootstrap() {
 
   // Cors configuration
   const corsOptions: CorsOptions = {
-    origin: 'https://silver-douhua-0c6bf4.netlify.app',
+    origin: 'https://teal-sherbet-4c2395.netlify.app',
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
     credentials: true,
   };
