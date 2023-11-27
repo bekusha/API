@@ -16,6 +16,7 @@ async function bootstrap() {
   // Cors configuration
   const corsOptions: CorsOptions = {
     origin: 'https://delicate-faun-a7c9cb.netlify.app', 
+    // origin: 'http://localhost:4200', 
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
     credentials: true,
   };

@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{name}} - Template</title>
+    <title><span >{{name}} </span>- Template</title>
+    <style>
+        div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 100%;
+            padding: 40px;
+        }
+        </style>
 </head>
 <body>
+    <div>
     <header>
         <h1>{{name}} - Template</h1>
     </header>
@@ -30,5 +41,6 @@
     <footer>
         <p>&copy; {{currentYear}} Test Company</p>
     </footer>
+    </div>
 </body>
 </html>
