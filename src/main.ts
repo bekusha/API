@@ -15,8 +15,7 @@ async function bootstrap() {
 
   // Cors configuration
   const corsOptions: CorsOptions = {
-    origin: '*', 
-    // origin: 'https://eclectic-pegasus-48acf5.netlify.app', 
+    origin: 'https://delicate-faun-a7c9cb.netlify.app', 
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
     credentials: true,
   };
