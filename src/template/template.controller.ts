@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put, Delete, Render, HttpStatus, HttpException } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Delete, Render, HttpStatus, HttpException, Query } from '@nestjs/common';
 import { TemplateService } from './template.service';
 import { Template } from 'src/model/template.model';
 
@@ -7,55 +7,57 @@ import { Template } from 'src/model/template.model';
 
 @Controller('templates')
 export class TemplateController {
-  constructor(private readonly templateService: TemplateService) {}
+  constructor(private  templateService: TemplateService) {}
 
   @Get('list')
  async getAllTemplates() {
     try {
       const templates = await this.templateService.getAllTemplates();
-      
       return templates ;
     } catch (error) {
       throw new HttpException('Error fetching templates', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
-@Get(':id/html')
- 
- @Render('template')
- async findOne(@Param('id') id: string) {
- 
-  try {
-    let template = await this.templateService.findOne(id);
-    return  template ;
-   } catch (error) {
-    throw new HttpException('Error fetching template', HttpStatus.INTERNAL_SERVER_ERROR);
-   }
- }
 
-  @Post('')
-async createTemplate(@Body() template: Template): Promise<Template> {
+@Post(':id/html')
+@Render('template')
+async compileTemplate(
+  @Param('id') id: string,
+  @Body() jsonData: any,
+): Promise<any> {
   try {
-    const createdTemplate = await this.templateService.createTemplate(template);
-    return createdTemplate;
+    const template = await this.templateService.findOne(id);
+
+    if (!template) {
+      throw new HttpException('Template not found', HttpStatus.NOT_FOUND);
+    }
+
+    const compiledResult = this.templateService.compile(template, jsonData);
+    return { htmlSource: compiledResult };
   } catch (error) {
-    throw new HttpException('Error creating template', HttpStatus.BAD_REQUEST);
+  throw new HttpException('Error compiling template', HttpStatus.INTERNAL_SERVER_ERROR, jsonData);
   }
 }
 
 
-  @Put(':id')
-  async updateTemplate(@Param('id') id: string, @Body() template: Template): Promise<Template> {
-    try {
-      const updatedTemplate = await this.templateService.updateTemplate(id, template);
-      return updatedTemplate;
-      
-    } catch (error) {
-      throw new HttpException('Error updating template', HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-  }
+@Post('create')
+async createTemplate(@Body() template: Template): Promise<Template> {
+  const createdTemplate = await this.templateService.createTemplate(template);
+  return createdTemplate;
+}
 
-  @Delete(':id')
+@Put(':id')
+async updateTemplate(@Param('id') id: string, @Body() template: Template): Promise<Template> {
+  try {
+    const updatedTemplate = await this.templateService.updateTemplate(id, template);
+    return updatedTemplate;
+  } catch (error) {
+     throw new HttpException('Error updating template', HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+}
+
+@Delete(':id')
   async deleteTemplate(@Param('id') id: string): Promise<void> {
     try {
       await this.templateService.deleteTemplate(id);

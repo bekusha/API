@@ -1,7 +1,7 @@
-GET http://localhost:3000/template/655b47bdc5894f4e0e7ea2a4 HTTP/1.1
+POST http://localhost:3000/templates/create HTTP/1.1
 content-type: application/json
 
 {
-    "name": "asadasfada",
-    "content": "Test<b>Text</b> Content"
+    "name": "asdasd",
+    "htmlSource": "hello "
 }

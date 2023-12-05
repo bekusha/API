@@ -3,44 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><span >{{name}} </span>- Template</title>
-    <style>
-        div{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            max-width: 100%;
-            padding: 40px;
-        }
-        </style>
+    <title>Generated HTML</title>
 </head>
 <body>
-    <div>
-    <header>
-        <h1>{{name}} - Template</h1>
-    </header>
-
-    <section>
-        <h2>Contact Information</h2>
-        <p>
-            <strong>Person:</strong> {{firstName}} {{lastName}}<br>
-            <strong>Email:</strong> {{email}}<br>
-            <strong>Phone:</strong> {{phoneNumber}}<br>
-            <strong>Address:</strong> {{address}}
-        </p>
-    </section>
-
-    <section>
-        <p>
-            Hello {{firstName}}  we are talking about {{{content}}}. 
-            We will contact by your number {{phoneNumber}} or email: {{email}}
-        </p>
-    </section>
-
-    <footer>
-        <p>&copy; {{currentYear}} Test Company</p>
-    </footer>
-    </div>
+    {{{htmlSource}}}
 </body>
 </html>
